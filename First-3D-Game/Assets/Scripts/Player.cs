@@ -30,11 +30,18 @@ public class Player : MonoBehaviour
         }
 
         //Jump function
-        if(Input.GetKeyDown(KeyCode.Space))
+        if(Input.GetKeyDown(KeyCode.Space) && isGrounded==true)
             {
+            isGrounded = false;
                 rig.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-
             }
+    }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.contacts[0].normal==Vector3.up)
+        {
+            isGrounded = true;
+        }
     }
 }

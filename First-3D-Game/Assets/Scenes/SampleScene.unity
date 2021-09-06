@@ -201,6 +201,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 2
   rig: {fileID: 399093849}
+  jumpForce: 5
 --- !u!1001 &684196820
 PrefabInstance:
   m_ObjectHideFlags: 0
