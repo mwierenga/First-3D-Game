@@ -6,24 +6,35 @@ public class Player : MonoBehaviour
 {
     public float moveSpeed;
     public Rigidbody rig;
+    public float jumpForce;
+    private bool isGrounded;
 
     // Update is called once per frame
     void Update()
     {
+        // get x and z inputs
         float x = Input.GetAxis("Horizontal") * moveSpeed;
         float z = Input.GetAxis("Vertical") * moveSpeed;
+
+        //setting velocity based on inputs
         rig.velocity = new Vector3(x, rig.velocity.y, z);
 
+        //create velocity variable and setting y to 0
         Vector3 vel = rig.velocity;
-
         vel.y = 0;
 
+        //if we're moving, rotate to face out moving direction
         if(vel.x != 0 || vel.z != 0)
         {
             transform.forward = vel;
         }
 
+        //Jump function
+        if(Input.GetKeyDown(KeyCode.Space))
+            {
+                rig.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
 
+            }
 
     }
 }
