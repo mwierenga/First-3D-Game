@@ -32,6 +32,19 @@ public class Enemy : MonoBehaviour
         else
         {
             transform.position = Vector3.MoveTowards(transform.position, startPos + (moveDirection * moveDistance), speed * Time.deltaTime);
+
+            if(transform.position == startPos + (moveDirection * moveDistance))
+            {
+                movingToStart = true;
+            }
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("Player"))
+        {
+            other.GetComponent<Player>().GameOver();
         }
     }
 }
